@@ -14,7 +14,6 @@ namespace testZED2
     public partial class Form1 : Form
     {
         public static int n = 80;
-        public static double h = 0.001;
         public double[] X = new double[n + 4];
         public double[] Y = new double[n + 4];
         ZedGraphControl zedGrapgControl1 = new ZedGraphControl();
@@ -58,7 +57,7 @@ namespace testZED2
 
             PointPairList list = new PointPairList();
 
-            double a = 0, y0 = 1, x0 = a, x = x0, y = y0;
+            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0;
 
 
             for (int i = 0; i < n + 1; i++)
@@ -197,7 +196,7 @@ namespace testZED2
             for (int k = 4; k < n + 1; k++)
             {
 
-                Y[k + 1] = Y[k] + h * ((55 / 24) * f(X[k], Y[k]) - (59 / 24) * f(X[k - 1], Y[k - 1]) + (37 / 24) * f(X[k - 2], Y[k - 2]) - (3 / 8) * f(X[k - 3], Y[k - 3]));
+                Y[k + 1] = Y[k] + (h/24) * (55 * f(X[k], Y[k]) - 59 * f(X[k - 1], Y[k - 1]) + 37 * f(X[k - 2], Y[k - 2]) - 9 * f(X[k - 3], Y[k - 3]));
                 X[k + 1] = X[k] + h;
                 list.Add(X[k], Y[k]);
 
@@ -225,7 +224,7 @@ namespace testZED2
             double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0, k1, k2, k3, k4;
 
 
-            for (int k = 0; k < 1; k++)
+            for (int k = 0; k < 1; k++) // ПЕРЕДАЛАТЬ НА МЕТОД ЭЙЛЕРА
             {
 
                 k1 = f(X[k], Y[k]);
