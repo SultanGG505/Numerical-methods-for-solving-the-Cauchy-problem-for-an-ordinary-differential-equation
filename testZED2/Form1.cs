@@ -16,6 +16,7 @@ namespace testZED2
         public static int n = 80;
         public double[] X = new double[n + 4];
         public double[] Y = new double[n + 4];
+        string selectedCountry;
         ZedGraphControl zedGrapgControl1 = new ZedGraphControl();
         public Form1()
         {
@@ -38,10 +39,19 @@ namespace testZED2
         {
             GetSize();
         }
-        static double f(double x, double y)
+        static double f1(double x, double y)
         {
             return x * x - 2 * y;
         }
+        static double f2(double x, double y)
+        {
+            return Math.Pow(Math.E, x) - y;
+        }
+        static double f3(double x, double y)
+        {
+            return x * Math.Pow(Math.E, Math.Pow(-x, 2))-2*x*y;
+        }
+
 
         private void Eiler(ZedGraphControl Zed_GraphControl)
         {
@@ -63,7 +73,7 @@ namespace testZED2
             for (int i = 0; i < n + 1; i++)
             {
                 list.Add(x, y);
-                y = y + h * f(x, y); //делаем шаг
+                y = y + h * f1(x, y); //делаем шаг
                 x += h;
             }
             LineItem myCircle = my_Pane.AddCurve("МЭ", list, Color.Red, SymbolType.Circle);
@@ -90,7 +100,7 @@ namespace testZED2
             for (int i = 0; i < n + 1; i++)
             {
                 list.Add(x, y);
-                y = y + h * f(x + h / 2, y + (h / 2) * f(x, y)); //делаем шаг
+                y = y + h * f1(x + h / 2, y + (h / 2) * f1(x, y)); //делаем шаг
                 x += h;
             }
             LineItem myCircle = my_Pane.AddCurve("УМЭ", list, Color.Orange, SymbolType.Circle);
@@ -120,8 +130,8 @@ namespace testZED2
             for (int i = 0; i < n + 1; i++)
             {
                 list.Add(x, y);
-                double d = f(x, y);
-                y = y + (h / 2) * (d + f(x + h, y + h * d)); //делаем шаг
+                double d = f1(x, y);
+                y = y + (h / 2) * (d + f1(x + h, y + h * d)); //делаем шаг
                 x += h;
             }
             LineItem myCircle = my_Pane.AddCurve("МРК2", list, Color.Yellow, SymbolType.Circle);
@@ -151,10 +161,10 @@ namespace testZED2
             for (int i = 0; i < n + 1; i++)
             {
                 list.Add(x, y);
-                k1 = f(x, y);
-                k2 = f(x + h / 2, y + (h * k1) / 2);
-                k3 = f(x + h / 2, y + (h * k2) / 2);
-                k4 = f(x + h, y + h * k3);
+                k1 = f1(x, y);
+                k2 = f1(x + h / 2, y + (h * k1) / 2);
+                k3 = f1(x + h / 2, y + (h * k2) / 2);
+                k4 = f1(x + h, y + h * k3);
                 y = y + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4); //делаем шаг
                 x += h;
             }
@@ -183,10 +193,10 @@ namespace testZED2
             for (int k = 0; k < 4; k++)
             {
 
-                k1 = f(X[k], Y[k]);
-                k2 = f(X[k] + h / 2, Y[k] + (h * k1) / 2);
-                k3 = f(X[k] + h / 2, Y[k] + (h * k2) / 2);
-                k4 = f(X[k] + h, Y[k] + h * k3);
+                k1 = f1(X[k], Y[k]);
+                k2 = f1(X[k] + h / 2, Y[k] + (h * k1) / 2);
+                k3 = f1(X[k] + h / 2, Y[k] + (h * k2) / 2);
+                k4 = f1(X[k] + h, Y[k] + h * k3);
                 Y[k + 1] = Y[k] + (k1 + 2 * k2 + 2 * k3 + k4) / 6;
                 X[k + 1] = X[k] + h;
 
@@ -196,7 +206,7 @@ namespace testZED2
             for (int k = 4; k < n + 1; k++)
             {
 
-                Y[k + 1] = Y[k] + (h/24) * (55 * f(X[k], Y[k]) - 59 * f(X[k - 1], Y[k - 1]) + 37 * f(X[k - 2], Y[k - 2]) - 9 * f(X[k - 3], Y[k - 3]));
+                Y[k + 1] = Y[k] + (h/24) * (55 * f1(X[k], Y[k]) - 59 * f1(X[k - 1], Y[k - 1]) + 37 * f1(X[k - 2], Y[k - 2]) - 9 * f1(X[k - 3], Y[k - 3]));
                 X[k + 1] = X[k] + h;
                 list.Add(X[k], Y[k]);
 
@@ -227,10 +237,10 @@ namespace testZED2
             for (int k = 0; k < 1; k++) // ПЕРЕДАЛАТЬ НА МЕТОД ЭЙЛЕРА
             {
 
-                k1 = f(X[k], Y[k]);
-                k2 = f(X[k] + h / 2, Y[k] + (h * k1) / 2);
-                k3 = f(X[k] + h / 2, Y[k] + (h * k2) / 2);
-                k4 = f(X[k] + h, Y[k] + h * k3);
+                k1 = f1(X[k], Y[k]);
+                k2 = f1(X[k] + h / 2, Y[k] + (h * k1) / 2);
+                k3 = f1(X[k] + h / 2, Y[k] + (h * k2) / 2);
+                k4 = f1(X[k] + h, Y[k] + h * k3);
                 Y[k + 1] = Y[k] + (k1 + 2 * k2 + 2 * k3 + k4) / 6;
                 X[k + 1] = X[k] + h;
 
@@ -240,7 +250,7 @@ namespace testZED2
             for (int k = 1; k < n + 1; k++)
             {
 
-                Y[k + 1] = Y[k] + (h / 2) * f(X[k + 1], Y[k + 1]) + f(X[k], Y[k]);
+                Y[k + 1] = Y[k] + (h / 2) * f1(X[k + 1], Y[k + 1]) + f1(X[k], Y[k]);
                 X[k + 1] = X[k] + h;
                 list.Add(X[k], Y[k]);
 
@@ -298,5 +308,10 @@ namespace testZED2
             NotYavnA2(zedGrapgControl1);
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedCountry = listBox1.SelectedItem.ToString();
+            //MessageBox.Show(selectedCountry);
+        }
     }
 }
