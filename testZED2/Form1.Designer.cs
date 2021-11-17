@@ -43,20 +43,24 @@ namespace testZED2
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ResOfSelection = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.curX = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.curY = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.StartingXInput = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.StartintYInput = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.StepInput = new System.Windows.Forms.TextBox();
+            this.curStep = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // EM
             // 
             this.EM.BackColor = System.Drawing.SystemColors.Highlight;
-            this.EM.Location = new System.Drawing.Point(950, 30);
+            this.EM.Location = new System.Drawing.Point(964, 12);
             this.EM.Name = "EM";
             this.EM.Size = new System.Drawing.Size(178, 56);
             this.EM.TabIndex = 0;
@@ -67,7 +71,7 @@ namespace testZED2
             // BEM
             // 
             this.BEM.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BEM.Location = new System.Drawing.Point(950, 92);
+            this.BEM.Location = new System.Drawing.Point(964, 74);
             this.BEM.Name = "BEM";
             this.BEM.Size = new System.Drawing.Size(178, 79);
             this.BEM.TabIndex = 1;
@@ -78,7 +82,7 @@ namespace testZED2
             // RK4
             // 
             this.RK4.BackColor = System.Drawing.SystemColors.Highlight;
-            this.RK4.Location = new System.Drawing.Point(950, 273);
+            this.RK4.Location = new System.Drawing.Point(964, 255);
             this.RK4.Name = "RK4";
             this.RK4.Size = new System.Drawing.Size(178, 73);
             this.RK4.TabIndex = 2;
@@ -89,7 +93,7 @@ namespace testZED2
             // RK2
             // 
             this.RK2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.RK2.Location = new System.Drawing.Point(950, 187);
+            this.RK2.Location = new System.Drawing.Point(964, 169);
             this.RK2.Name = "RK2";
             this.RK2.Size = new System.Drawing.Size(178, 70);
             this.RK2.TabIndex = 3;
@@ -99,18 +103,19 @@ namespace testZED2
             // 
             // SetDefScale
             // 
-            this.SetDefScale.Location = new System.Drawing.Point(950, 622);
+            this.SetDefScale.BackColor = System.Drawing.Color.Goldenrod;
+            this.SetDefScale.Location = new System.Drawing.Point(936, 603);
             this.SetDefScale.Name = "SetDefScale";
             this.SetDefScale.Size = new System.Drawing.Size(144, 55);
             this.SetDefScale.TabIndex = 4;
             this.SetDefScale.Text = "set default scale";
-            this.SetDefScale.UseVisualStyleBackColor = true;
+            this.SetDefScale.UseVisualStyleBackColor = false;
             this.SetDefScale.Click += new System.EventHandler(this.BTN_Scale);
             // 
             // AM4
             // 
             this.AM4.BackColor = System.Drawing.SystemColors.Highlight;
-            this.AM4.Location = new System.Drawing.Point(950, 370);
+            this.AM4.Location = new System.Drawing.Point(964, 352);
             this.AM4.Name = "AM4";
             this.AM4.Size = new System.Drawing.Size(178, 59);
             this.AM4.TabIndex = 5;
@@ -121,7 +126,7 @@ namespace testZED2
             // AM2
             // 
             this.AM2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.AM2.Location = new System.Drawing.Point(950, 448);
+            this.AM2.Location = new System.Drawing.Point(964, 430);
             this.AM2.Name = "AM2";
             this.AM2.Size = new System.Drawing.Size(178, 60);
             this.AM2.TabIndex = 6;
@@ -138,7 +143,7 @@ namespace testZED2
             "1)  y\' = x * x - 2 * y",
             "2) y\' = e^x-y",
             "3) y\' = x * e^(-x^2)-2xy"});
-            this.SelectFuncBox.Location = new System.Drawing.Point(735, 48);
+            this.SelectFuncBox.Location = new System.Drawing.Point(733, 48);
             this.SelectFuncBox.Name = "SelectFuncBox";
             this.SelectFuncBox.Size = new System.Drawing.Size(152, 84);
             this.SelectFuncBox.TabIndex = 7;
@@ -146,18 +151,19 @@ namespace testZED2
             // 
             // ClearAll
             // 
-            this.ClearAll.Location = new System.Drawing.Point(770, 622);
+            this.ClearAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.ClearAll.Location = new System.Drawing.Point(795, 603);
             this.ClearAll.Name = "ClearAll";
             this.ClearAll.Size = new System.Drawing.Size(135, 55);
             this.ClearAll.TabIndex = 8;
             this.ClearAll.Text = "clear all";
-            this.ClearAll.UseVisualStyleBackColor = true;
+            this.ClearAll.UseVisualStyleBackColor = false;
             this.ClearAll.Click += new System.EventHandler(this.BTN_Clear);
             // 
             // SelectCountOfPoints
             // 
             this.SelectCountOfPoints.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.SelectCountOfPoints.Location = new System.Drawing.Point(735, 298);
+            this.SelectCountOfPoints.Location = new System.Drawing.Point(733, 298);
             this.SelectCountOfPoints.Name = "SelectCountOfPoints";
             this.SelectCountOfPoints.Size = new System.Drawing.Size(100, 22);
             this.SelectCountOfPoints.TabIndex = 12;
@@ -166,7 +172,7 @@ namespace testZED2
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(732, 22);
+            this.label1.Location = new System.Drawing.Point(730, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 23);
             this.label1.TabIndex = 13;
@@ -174,7 +180,7 @@ namespace testZED2
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(732, 172);
+            this.label2.Location = new System.Drawing.Point(730, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 23);
             this.label2.TabIndex = 14;
@@ -182,7 +188,7 @@ namespace testZED2
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(732, 272);
+            this.label3.Location = new System.Drawing.Point(730, 272);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(155, 23);
             this.label3.TabIndex = 15;
@@ -191,22 +197,22 @@ namespace testZED2
             // ResOfSelection
             // 
             this.ResOfSelection.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ResOfSelection.Location = new System.Drawing.Point(732, 195);
+            this.ResOfSelection.Location = new System.Drawing.Point(730, 195);
             this.ResOfSelection.Name = "ResOfSelection";
             this.ResOfSelection.Size = new System.Drawing.Size(184, 62);
             this.ResOfSelection.TabIndex = 16;
             // 
-            // label5
+            // curX
             // 
-            this.label5.BackColor = System.Drawing.Color.DarkCyan;
-            this.label5.Location = new System.Drawing.Point(732, 473);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 26);
-            this.label5.TabIndex = 17;
+            this.curX.BackColor = System.Drawing.Color.DarkCyan;
+            this.curX.Location = new System.Drawing.Point(730, 516);
+            this.curX.Name = "curX";
+            this.curX.Size = new System.Drawing.Size(57, 26);
+            this.curX.TabIndex = 17;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(732, 448);
+            this.label6.Location = new System.Drawing.Point(730, 491);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 23);
             this.label6.TabIndex = 18;
@@ -214,23 +220,23 @@ namespace testZED2
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(859, 448);
+            this.label7.Location = new System.Drawing.Point(801, 491);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 23);
             this.label7.TabIndex = 19;
             this.label7.Text = "current Y";
             // 
-            // label8
+            // curY
             // 
-            this.label8.BackColor = System.Drawing.Color.DarkCyan;
-            this.label8.Location = new System.Drawing.Point(859, 473);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 26);
-            this.label8.TabIndex = 20;
+            this.curY.BackColor = System.Drawing.Color.DarkCyan;
+            this.curY.Location = new System.Drawing.Point(801, 516);
+            this.curY.Name = "curY";
+            this.curY.Size = new System.Drawing.Size(57, 26);
+            this.curY.TabIndex = 20;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(732, 332);
+            this.label9.Location = new System.Drawing.Point(730, 332);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(173, 23);
             this.label9.TabIndex = 22;
@@ -239,41 +245,81 @@ namespace testZED2
             // StartingXInput
             // 
             this.StartingXInput.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.StartingXInput.Location = new System.Drawing.Point(735, 358);
+            this.StartingXInput.Location = new System.Drawing.Point(733, 358);
             this.StartingXInput.Name = "StartingXInput";
             this.StartingXInput.Size = new System.Drawing.Size(100, 22);
             this.StartingXInput.TabIndex = 21;
+            this.StartingXInput.TextChanged += new System.EventHandler(this.StartingXInput_TextChanged);
             this.StartingXInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartingXInput_KeyPress);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(732, 383);
+            this.label10.Location = new System.Drawing.Point(730, 383);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(173, 23);
             this.label10.TabIndex = 24;
-            this.label10.Text = "enter the starting point X";
+            this.label10.Text = "enter the starting point Y";
             // 
             // StartintYInput
             // 
             this.StartintYInput.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.StartintYInput.Location = new System.Drawing.Point(735, 409);
+            this.StartintYInput.Location = new System.Drawing.Point(733, 409);
             this.StartintYInput.Name = "StartintYInput";
             this.StartintYInput.Size = new System.Drawing.Size(100, 22);
             this.StartintYInput.TabIndex = 23;
-            this.StartintYInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartintYInput_KeyPress);
+            this.StartintYInput.TextChanged += new System.EventHandler(this.StartintYInput_TextChanged);
+            this.StartintYInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartingYInput_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(730, 434);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(173, 23);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "enter the Step";
+            // 
+            // StepInput
+            // 
+            this.StepInput.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.StepInput.Location = new System.Drawing.Point(733, 460);
+            this.StepInput.Name = "StepInput";
+            this.StepInput.Size = new System.Drawing.Size(100, 22);
+            this.StepInput.TabIndex = 25;
+            this.StepInput.TextChanged += new System.EventHandler(this.StepInput_TextChanged);
+            this.StepInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StepInput_KeyPress);
+            // 
+            // curStep
+            // 
+            this.curStep.BackColor = System.Drawing.Color.DarkCyan;
+            this.curStep.Location = new System.Drawing.Point(873, 516);
+            this.curStep.Name = "curStep";
+            this.curStep.Size = new System.Drawing.Size(57, 26);
+            this.curStep.TabIndex = 28;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(873, 491);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 23);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "current Step";
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1160, 740);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.curStep);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.StepInput);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.StartintYInput);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.StartingXInput);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.curY);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.curX);
             this.Controls.Add(this.ResOfSelection);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -293,6 +339,7 @@ namespace testZED2
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "graphical representation of numerical methods for solving Cauchy problems for an " +
     "ordinary differential equation";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StepInput_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,14 +363,18 @@ namespace testZED2
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label ResOfSelection;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label curX;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label curY;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox StartingXInput;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox StartintYInput;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox StepInput;
+        private System.Windows.Forms.Label curStep;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -13,19 +13,20 @@ namespace testZED2
 {
     public partial class Form1 : Form
     {
-        public static int n;
+        public static int n, xP, yP;
+        public static double Step;
         public string ME = "Euler's method.";
         public string BME = "an improved Euler method.";
         public string MRK2 = "the Runge-Kutta method of the second order.";
         public string MRK4 = "the fourth-order Runge-Kutta method.";
         public string YavnA4 = "an explicit Adams method of the fourth order.";
         public string NeYavnA2 = "the second-order implicit Adams method.";
-
-
-
-        string selectedCountry = "0";
+        public string selectedCountry = "0";
         public string varFunc = "0";
         public string varPoint = "0";
+        public string varX = "0";
+        public string varY = "0";
+        public string varStep = "0";
         ZedGraphControl zedGrapgControl1 = new ZedGraphControl();
         public Form1()
         {
@@ -72,12 +73,11 @@ namespace testZED2
             GraphPane my_Pane = Zed_GraphControl.GraphPane;
 
             PointPairList list = new PointPairList();
-            double[] X = new double[n + 4];
-            double[] Y = new double[n + 4];
 
-            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0;
 
-            if (varPoint != "0")
+            double h = Step, x = xP, y = yP;
+
+            if (varPoint != "0" && varX != "0" && varY != "0" && varStep != "0")
             {
                 if (varFunc == "1")
                 {
@@ -118,11 +118,22 @@ namespace testZED2
                 }
 
             }
-            else
+            if (varPoint == "0")
             {
                 MessageBox.Show("Enter count of points");
             }
-
+            if (varX == "0")
+            {
+                MessageBox.Show("Enter start X");
+            }
+            if (varY == "0")
+            {
+                MessageBox.Show("Enter start Y");
+            }
+            if (varStep == "0")
+            {
+                MessageBox.Show("Enter Step");
+            }
 
         }
         private void BetterEiler(ZedGraphControl Zed_GraphControl)
@@ -131,9 +142,9 @@ namespace testZED2
 
             PointPairList list = new PointPairList();
 
-            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0;
+            double h = Step, x = xP, y = yP;
 
-            if (varPoint != "0")
+            if (varPoint != "0" && varX != "0" && varY != "0" && varStep != "0")
             {
                 if (varFunc == "1")
                 {
@@ -174,9 +185,21 @@ namespace testZED2
                 }
 
             }
-            else
+            if (varPoint == "0")
             {
                 MessageBox.Show("Enter count of points");
+            }
+            if (varX == "0")
+            {
+                MessageBox.Show("Enter start X");
+            }
+            if (varY == "0")
+            {
+                MessageBox.Show("Enter start Y");
+            }
+            if (varStep == "0")
+            {
+                MessageBox.Show("Enter Step");
             }
 
 
@@ -190,9 +213,9 @@ namespace testZED2
             PointPairList list = new PointPairList();
 
 
-            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0;
+            double h = Step, x = xP, y = yP;
 
-            if (varPoint != "0")
+            if (varPoint != "0" && varX != "0" && varY != "0" && varStep != "0")
             {
                 if (varFunc == "1")
                 {
@@ -236,9 +259,21 @@ namespace testZED2
                 }
 
             }
-            else
+            if (varPoint == "0")
             {
                 MessageBox.Show("Enter count of points");
+            }
+            if (varX == "0")
+            {
+                MessageBox.Show("Enter start X");
+            }
+            if (varY == "0")
+            {
+                MessageBox.Show("Enter start Y");
+            }
+            if (varStep == "0")
+            {
+                MessageBox.Show("Enter Step");
             }
 
         }
@@ -246,9 +281,9 @@ namespace testZED2
         {
             GraphPane my_Pane = Zed_GraphControl.GraphPane;
             PointPairList list = new PointPairList();
-            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0, k1, k2, k3, k4;
+            double h = Step, x = xP, y = yP, k1, k2, k3, k4;
 
-            if (varPoint != "0")
+            if (varPoint != "0" && varX != "0" && varY != "0" && varStep != "0")
             {
                 if (varFunc == "1")
                 {
@@ -300,9 +335,21 @@ namespace testZED2
                     MessageBox.Show("select a function");
                 }
             }
-            else
+            if (varPoint == "0")
             {
                 MessageBox.Show("Enter count of points");
+            }
+            if (varX == "0")
+            {
+                MessageBox.Show("Enter start X");
+            }
+            if (varY == "0")
+            {
+                MessageBox.Show("Enter start Y");
+            }
+            if (varStep == "0")
+            {
+                MessageBox.Show("Enter Step");
             }
         }
         private void YavnAdam4(ZedGraphControl Zed_GraphControl)
@@ -311,10 +358,10 @@ namespace testZED2
             PointPairList list = new PointPairList();
             double[] X = new double[n + 4];
             double[] Y = new double[n + 4];
-            X[0] = 0; Y[0] = 1;
-            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0, k1, k2, k3, k4;
+            X[0] = xP; Y[0] = yP;
+            double h = Step, x = xP, y = yP,k1, k2, k3, k4;
 
-            if (varPoint != "0")
+            if (varPoint != "0" && varX != "0" && varY != "0" && varStep != "0")
             {
                 if (varFunc == "1")
                 {
@@ -384,9 +431,21 @@ namespace testZED2
                     MessageBox.Show("select a function");
                 }
             }
-            else
+            if (varPoint == "0")
             {
                 MessageBox.Show("Enter count of points");
+            }
+            if (varX == "0")
+            {
+                MessageBox.Show("Enter start X");
+            }
+            if (varY == "0")
+            {
+                MessageBox.Show("Enter start Y");
+            }
+            if (varStep == "0")
+            {
+                MessageBox.Show("Enter Step");
             }
 
         }
@@ -397,10 +456,10 @@ namespace testZED2
             PointPairList list = new PointPairList();
             double[] X = new double[n + 4];
             double[] Y = new double[n + 4];
-            X[0] = 0; Y[0] = 1;
-            double a = 0, h = 0.1, y0 = 1, x0 = a, x = x0, y = y0, k1, k2, k3, k4;
+            X[0] = xP; Y[0] = yP;
+            double h = Step, x = xP, y = yP,k1, k2, k3, k4;
 
-            if (varPoint != "0")
+            if (varPoint != "0" && varX != "0" && varY != "0" && varStep != "0")
             {
                 if (varFunc == "1")
                 {
@@ -486,9 +545,21 @@ namespace testZED2
                 }
 
             }
-            else
+            if (varPoint == "0")
             {
                 MessageBox.Show("Enter count of points");
+            }
+            if (varX == "0")
+            {
+                MessageBox.Show("Enter start X");
+            }
+            if (varY == "0")
+            {
+                MessageBox.Show("Enter start Y");
+            }
+            if (varStep == "0")
+            {
+                MessageBox.Show("Enter Step");
             }
         }
 
@@ -646,6 +717,8 @@ namespace testZED2
             }
         }
 
+
+
         private void StartingXInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -655,12 +728,78 @@ namespace testZED2
             }
         }
 
+        private void StartingYInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
+
+
+
         private void StartintYInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
             if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
             {
                 e.Handled = true;
+            }
+        }
+
+        private void StepInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8 && number != 44) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void StartingXInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(StartingXInput.Text))
+            {
+                varX = "0";
+                //MessageBox.Show("Enter number of points!");
+            }
+
+            else
+            {
+                varX = "1";
+                xP = Convert.ToInt32(StartingXInput.Text);
+                curX.Text = StartingXInput.Text;
+            }
+        }
+        private void StartintYInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(StartintYInput.Text))
+            {
+                varY = "0";
+                //MessageBox.Show("Enter number of points!");
+            }
+
+            else
+            {
+                varY = "1";
+                yP = Convert.ToInt32(StartintYInput.Text);
+                curY.Text = StartintYInput.Text;
+            }
+        }
+        private void StepInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(StepInput.Text))
+            {
+                varStep = "0";
+                //MessageBox.Show("Enter number of points!");
+            }
+
+            else
+            {
+                varStep = "1";
+                Step = Convert.ToDouble(StepInput.Text);
+                curStep.Text = StepInput.Text;
             }
         }
     }
