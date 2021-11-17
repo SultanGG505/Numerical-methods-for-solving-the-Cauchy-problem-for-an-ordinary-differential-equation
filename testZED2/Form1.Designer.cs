@@ -152,7 +152,7 @@ namespace testZED2
             // ClearAll
             // 
             this.ClearAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ClearAll.Location = new System.Drawing.Point(795, 603);
+            this.ClearAll.Location = new System.Drawing.Point(779, 603);
             this.ClearAll.Name = "ClearAll";
             this.ClearAll.Size = new System.Drawing.Size(135, 55);
             this.ClearAll.TabIndex = 8;
