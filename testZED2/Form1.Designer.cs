@@ -41,6 +41,7 @@ namespace testZED2
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button3
@@ -123,7 +124,7 @@ namespace testZED2
             "3) y\' = x * e^(-x^2)-2xy"});
             this.listBox1.Location = new System.Drawing.Point(735, 48);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 84);
+            this.listBox1.Size = new System.Drawing.Size(152, 84);
             this.listBox1.TabIndex = 7;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -161,9 +162,17 @@ namespace testZED2
             this.textBox3.TabIndex = 11;
             this.textBox3.Text = "selected function:";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(735, 298);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 22);
+            this.textBox4.TabIndex = 12;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1160, 740);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -198,6 +207,7 @@ namespace testZED2
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 

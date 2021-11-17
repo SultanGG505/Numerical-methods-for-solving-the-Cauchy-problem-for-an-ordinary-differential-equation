@@ -13,7 +13,7 @@ namespace testZED2
 {
     public partial class Form1 : Form
     {
-        public static int n = 80;
+        public static int n = 10;
         public string ME = "Euler's method.";
         public string BME = "an improved Euler method.";
         public string MRK2 = "the Runge-Kutta method of the second order.";
