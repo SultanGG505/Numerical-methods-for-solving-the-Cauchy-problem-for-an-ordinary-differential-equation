@@ -57,55 +57,40 @@ namespace testZED2
             this.Close();
         }
 
+        private void Clear(ZedGraphControl Zed_GraphControl)
+        {
+            //GraphPane pane = Zed_GraphControl.GraphPane;
+            zedGrapgControl1.GraphPane.CurveList.Clear();
+            zedGrapgControl1.GraphPane.GraphObjList.Clear();
+            zedGrapgControl1.GraphPane.XAxis.Type = AxisType.Linear;
+            zedGrapgControl1.GraphPane.XAxis.Scale.TextLabels = null;
+            zedGrapgControl1.GraphPane.XAxis.MajorGrid.IsVisible = false;
+            zedGrapgControl1.GraphPane.YAxis.MajorGrid.IsVisible = false;
+            zedGrapgControl1.GraphPane.YAxis.MinorGrid.IsVisible = false;
+            zedGrapgControl1.GraphPane.XAxis.MinorGrid.IsVisible = false;
+            zedGrapgControl1.RestoreScale(zedGrapgControl1.GraphPane);
+            zedGrapgControl1.AxisChange();
+            zedGrapgControl1.Invalidate();
+        }
+        private void Scale(GraphPane pane)
+        {
+            pane.XAxis.Scale.MinAuto = true;
+            pane.XAxis.Scale.MaxAuto = true;
+            pane.YAxis.Scale.MinAuto = true;
+            pane.YAxis.Scale.MaxAuto = true;
+            zedGrapgControl1.AxisChange();
+            zedGrapgControl1.Invalidate();
+        }
+        private void GriddenOn(GraphPane my_Pane)
+        {
+            my_Pane.XAxis.MajorGrid.IsVisible = true;
+            my_Pane.YAxis.MajorGrid.IsVisible = true;
+            my_Pane.YAxis.MinorGrid.IsVisible = true;
+            my_Pane.XAxis.MinorGrid.IsVisible = true;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            Tilt(sender, e);
-        }
-        private void Eiler(ZedGraphControl Zed_GraphControl)
-        {
-            GraphPane my_Pane = Zed_GraphControl.GraphPane;
-            PointPairList list = new PointPairList();
-            double n = double.Parse(N_Box.Text);
-            double h = 1 / n;
-            double x = 0;
-            double y = Math.Sqrt(2);
-            string name = "N = " + n.ToString();
-            while (x <= 1)
-            {
-                list.Add(x, y);
-                y = y + h * f1(x, y); //делаем шаг
-                x += h;
-            }
-            LineItem myCircle = my_Pane.AddCurve(name, list, Color.Red, SymbolType.None);
-            zedGrapgControl1.AxisChange();
-            zedGrapgControl1.Invalidate();
-        }
-        private void Tochno(ZedGraphControl Zed_GraphControl)
-        {
-            GraphPane my_Pane = Zed_GraphControl.GraphPane;
-            PointPairList list = new PointPairList();
-
-
-            double n = double.Parse(N_Box.Text);
-            List<double> realX = new List<double> { };
-            List<double> realY = new List<double> { };
-            double a = 0;
-
-            double h = 1 / n;
-            double x = 0;
-            double y = Math.Sqrt(2);
-            string name = "N = " + n.ToString();
-            for (int i = 0; i < n; i++)
-            {
-                realX.Add(a + i * h);
-                realY.Add(realF1(realX[i]));
-                list.Add(realX[i], realY[i]);
-            }
-
-
-            LineItem myCircle = my_Pane.AddCurve(name + "/", list, Color.Blue, SymbolType.None);
-            zedGrapgControl1.AxisChange();
-            zedGrapgControl1.Invalidate();
+            this.Tilt(sender,e);
         }
 
         private void AllInOne(ZedGraphControl Zed_GraphControl)
@@ -113,54 +98,63 @@ namespace testZED2
             GraphPane my_Pane = Zed_GraphControl.GraphPane;
             double n = double.Parse(N_Box.Text);
             double h = 1 / n;
-
+            List<double> EilerX = new List<double> { };
+            List<double> EilerY = new List<double> { };
             PointPairList listEiler = new PointPairList();
-
             double xE = 0;
             double yE = Math.Sqrt(2);
             string nameE = "N = " + n.ToString();
             while (xE <= 1)
             {
+                EilerX.Add(xE);
+                EilerY.Add(yE);
                 listEiler.Add(xE, yE);
                 yE = yE + h * f1(xE, yE); //делаем шаг
                 xE += h;
             }
-            my_Pane.AddCurve(nameE, listEiler, Color.Red, SymbolType.None);
-
-
+            my_Pane.AddCurve(nameE + "/Eiler", listEiler, Color.Red, SymbolType.None);
+            ////////
             PointPairList listReal = new PointPairList();
             List<double> realX = new List<double> { };
             List<double> realY = new List<double> { };
             double a = 0;
-
-
-            double xR = 0;
             double yR = Math.Sqrt(2);
-            string name = "N = " + n.ToString();
+            string nameR = "N = " + n.ToString();
             for (int i = 0; i < n; i++)
             {
                 realX.Add(a + i * h);
                 realY.Add(realF1(realX[i]));
                 listReal.Add(realX[i], realY[i]);
             }
-
-
-            my_Pane.AddCurve(name + "/", listReal, Color.Blue, SymbolType.None);
+            my_Pane.AddCurve(nameR + "/Real", listReal, Color.Blue, SymbolType.None);
             zedGrapgControl1.AxisChange();
             zedGrapgControl1.Invalidate();
 
-
+            double maxNevyaz = 0, currentNevyaz;
+            for (int i = 0; i < n; i++)
+            {
+                currentNevyaz = Math.Abs(EilerX[i]-realX[i]);
+                if (currentNevyaz > maxNevyaz)
+                    maxNevyaz = currentNevyaz;
+            }
+            NevyazLabel.Text = maxNevyaz.ToString();
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
+            GriddenOn(zedGrapgControl1.GraphPane);
             AllInOne(zedGrapgControl1);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Clear(zedGrapgControl1);
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Scale(zedGrapgControl1.GraphPane);
         }
     }
 }

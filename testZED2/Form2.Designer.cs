@@ -36,6 +36,9 @@ namespace testZED2
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.NevyazLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -73,7 +76,7 @@ namespace testZED2
             // 
             this.button2.Location = new System.Drawing.Point(650, 263);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 51);
+            this.button2.Size = new System.Drawing.Size(113, 72);
             this.button2.TabIndex = 4;
             this.button2.Text = "Построить графики";
             this.button2.UseVisualStyleBackColor = true;
@@ -90,19 +93,49 @@ namespace testZED2
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(797, 263);
+            this.button3.Location = new System.Drawing.Point(769, 263);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(118, 51);
+            this.button3.Size = new System.Drawing.Size(118, 72);
             this.button3.TabIndex = 6;
-            this.button3.Text = "button3";
+            this.button3.Text = "Очистить график";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(894, 263);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(147, 72);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Вернуть изначальный масштаб";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(853, 221);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(205, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Максимальная невязка ->\r\n";
+            // 
+            // NevyazLabel
+            // 
+            this.NevyazLabel.AutoSize = true;
+            this.NevyazLabel.Location = new System.Drawing.Point(1065, 221);
+            this.NevyazLabel.Name = "NevyazLabel";
+            this.NevyazLabel.Size = new System.Drawing.Size(0, 20);
+            this.NevyazLabel.TabIndex = 9;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.NevyazLabel);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
@@ -126,5 +159,8 @@ namespace testZED2
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label NevyazLabel;
     }
 }
