@@ -48,7 +48,6 @@ namespace testZED2
         {
             zedGrapgControl1.Location = new Point(10, 10);
             zedGrapgControl1.Size = new Size(ClientRectangle.Width - 20, ClientRectangle.Height - 20);
-
         }
         protected override void OnSizeChanged(EventArgs e)
         {
