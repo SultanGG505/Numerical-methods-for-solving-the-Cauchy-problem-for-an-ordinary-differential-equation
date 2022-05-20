@@ -36,9 +36,13 @@ namespace testZED2
             //BorderColor = Color.White;
             HeaderBackColor = Color.Black;
             HeaderHeight = 30;
-            this.BackColor = Color.SeaShell;
+            this.BackColor = Color.FromArgb(15, 107, 90);
+            this.Focus();
         }
-
+        static double f1(double x, double y)
+        {
+            return 2 * Math.Pow(x, 3) * Math.Pow(y, 3) - 2 * x * y;
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -51,7 +55,31 @@ namespace testZED2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Tilt(sender,e);
+            Tilt(sender, e);
+        }
+        private void Eiler(ZedGraphControl Zed_GraphControl)
+        {
+            GraphPane my_Pane = Zed_GraphControl.GraphPane;
+            PointPairList list = new PointPairList();
+            double n = double.Parse(N_Box.Text);
+            double h = 1 / n;
+            double x = 0;
+            double y = Math.Sqrt(2);
+            string name = "N = " + n.ToString();
+            for (int d = 0; x <= 1; d++)
+            {
+                list.Add(x, y);
+                y = y + h * f1(x, y); //делаем шаг
+                x += h;
+            }
+            LineItem myCircle = my_Pane.AddCurve(name, list, Color.Red, SymbolType.Circle);
+            zedGrapgControl1.AxisChange();
+            zedGrapgControl1.Invalidate();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Eiler(zedGrapgControl1);
         }
     }
 }
