@@ -105,7 +105,7 @@ namespace testZED2
             double xE = 0;
             double yE = Math.Sqrt(2);
             string nameE = "N = " + n.ToString();
-            while (xE < b)
+            for(int i = 0; i<n;i++)
             {
                 EilerX.Add(xE);
                 EilerY.Add(yE);
@@ -131,7 +131,7 @@ namespace testZED2
             zedGrapgControl1.AxisChange();
             zedGrapgControl1.Invalidate();
 
-            double maxNevyaz = 0, currentNevyaz;
+            double maxNevyaz = 0, currentNevyaz = 0;
             for (int i = 0; i < n; i++)
             {
                 currentNevyaz = Math.Abs(EilerX[i] - realX[i]);
@@ -156,6 +156,16 @@ namespace testZED2
         private void button4_Click(object sender, EventArgs e)
         {
             Scale(zedGrapgControl1.GraphPane);
+        }
+
+       
+        private void enterCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8) //цифры и backspace
+            {
+                e.Handled = true;
+            }
         }
     }
 }

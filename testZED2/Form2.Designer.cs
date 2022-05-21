@@ -71,6 +71,8 @@ namespace testZED2
             this.N_Box.Name = "N_Box";
             this.N_Box.Size = new System.Drawing.Size(77, 26);
             this.N_Box.TabIndex = 3;
+            
+            this.N_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enterCount_KeyPress);
             // 
             // button2
             // 
