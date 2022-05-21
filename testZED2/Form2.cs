@@ -90,21 +90,22 @@ namespace testZED2
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Tilt(sender,e);
+            this.Tilt(sender, e);
         }
 
         private void AllInOne(ZedGraphControl Zed_GraphControl)
         {
             GraphPane my_Pane = Zed_GraphControl.GraphPane;
             double n = double.Parse(N_Box.Text);
-            double h = 1 / n;
+            double a = 0, b = 1;
+            double h = (b - a) / n;
             List<double> EilerX = new List<double> { };
             List<double> EilerY = new List<double> { };
             PointPairList listEiler = new PointPairList();
             double xE = 0;
             double yE = Math.Sqrt(2);
             string nameE = "N = " + n.ToString();
-            while (xE <= 1)
+            while (xE < b)
             {
                 EilerX.Add(xE);
                 EilerY.Add(yE);
@@ -117,12 +118,12 @@ namespace testZED2
             PointPairList listReal = new PointPairList();
             List<double> realX = new List<double> { };
             List<double> realY = new List<double> { };
-            double a = 0;
-            double yR = Math.Sqrt(2);
+            //double a = 0;
+            //double yR = Math.Sqrt(2);
             string nameR = "N = " + n.ToString();
             for (int i = 0; i < n; i++)
             {
-                realX.Add(a + i * h);
+                realX.Add(i * h);
                 realY.Add(realF1(realX[i]));
                 listReal.Add(realX[i], realY[i]);
             }
@@ -133,7 +134,7 @@ namespace testZED2
             double maxNevyaz = 0, currentNevyaz;
             for (int i = 0; i < n; i++)
             {
-                currentNevyaz = Math.Abs(EilerX[i]-realX[i]);
+                currentNevyaz = Math.Abs(EilerX[i] - realX[i]);
                 if (currentNevyaz > maxNevyaz)
                     maxNevyaz = currentNevyaz;
             }
