@@ -105,7 +105,7 @@ namespace testZED2
             double xE = 0;
             double yE = Math.Sqrt(2);
             string nameE = "N = " + n.ToString();
-            for(int i = 0; i<n;i++)
+            for (int i = 0; i < n + 1; i++)
             {
                 EilerX.Add(xE);
                 EilerY.Add(yE);
@@ -121,7 +121,7 @@ namespace testZED2
             //double a = 0;
             //double yR = Math.Sqrt(2);
             string nameR = "N = " + n.ToString();
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + 1; i++)
             {
                 realX.Add(i * h);
                 realY.Add(realF1(realX[i]));
@@ -134,7 +134,7 @@ namespace testZED2
             double maxNevyaz = 0, currentNevyaz = 0;
             for (int i = 0; i < n; i++)
             {
-                currentNevyaz = Math.Abs(EilerX[i] - realX[i]);
+                currentNevyaz = Math.Abs(EilerY[i] - realY[i]);
                 if (currentNevyaz > maxNevyaz)
                     maxNevyaz = currentNevyaz;
             }
@@ -158,7 +158,7 @@ namespace testZED2
             Scale(zedGrapgControl1.GraphPane);
         }
 
-       
+
         private void enterCount_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
